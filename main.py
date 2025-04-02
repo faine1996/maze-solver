@@ -28,6 +28,7 @@ def main():
 
     c3.draw_move(c4, True)
 
+
     win.wait_for_close()
 
 main()
