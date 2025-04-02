@@ -1,26 +1,33 @@
 from graphics import Window
-from shapes import Line,Point
+from cell import Cell
 
 def main():
     win = Window(800, 600)
-     # Create a few points and lines
-    p1 = Point(100, 100)
-    p2 = Point(300, 100)
-    p3 = Point(300, 300)
-    p4 = Point(100, 300)
 
-    line1 = Line(p1, p2)
-    line2 = Line(p2, p3)
-    line3 = Line(p3, p4)
-    line4 = Line(p4, p1)
+    c1 = Cell(win)
+    c1.has_right_wall = False
+    c1.draw(50, 50, 100, 100)
 
-    # Draw lines on the window
-    win.draw_line(line1, "red")
-    win.draw_line(line2, "green")
-    win.draw_line(line3, "blue")
-    win.draw_line(line4, "purple")
+    c2 = Cell(win)
+    c2.has_left_wall = False
+    c2.has_bottom_wall = False
+    c2.draw(100, 50, 150, 100)
+
+    c1.draw_move(c2)
+
+    c3 = Cell(win)
+    c3.has_top_wall = False
+    c3.has_right_wall = False
+    c3.draw(100, 100, 150, 150)
+
+    c2.draw_move(c3)
+
+    c4 = Cell(win)
+    c4.has_left_wall = False
+    c4.draw(150, 100, 200, 150)
+
+    c3.draw_move(c4, True)
 
     win.wait_for_close()
 
-if __name__ == "__main__":
-    main()
+main()
