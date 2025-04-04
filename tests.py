@@ -77,6 +77,24 @@ class Tests(unittest.TestCase):
         self.assertTrue(right_cell.has_top_wall)
         self.assertTrue(right_cell.has_bottom_wall)
 
+    def test_all_walls_initialized(self):
+        num_cols = 5
+        num_rows = 4
+        m = Maze(0, 0, num_rows, num_cols, 10, 10)
+
+        for col in range(num_cols):
+            for row in range(num_rows):
+                # Skip entrance and exit
+                if (col == 0 and row == 0) or (col == num_cols - 1 and row == num_rows - 1):
+                    continue
+
+                cell = m._cells[col][row]
+                self.assertTrue(cell.has_top_wall)
+                self.assertTrue(cell.has_bottom_wall)
+                self.assertTrue(cell.has_left_wall)
+                self.assertTrue(cell.has_right_wall)
+
+
 
 
 if __name__ == "__main__":
